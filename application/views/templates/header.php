@@ -110,9 +110,9 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Addons
-      </div>
+      </div> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

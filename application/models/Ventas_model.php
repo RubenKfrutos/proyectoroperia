@@ -38,7 +38,7 @@ class Ventas_model extends CI_Model
         $this->db->select("vd.*, a.nombre_articulo,a.precio,vd.cantidad,vd.monto_importe");
         $this->db->from("venta_detalle vd");
         $this->db->join("articulos a", " vd.articulos_id = a.id");
-        $this->db->where("vd.venta_id",$id)
+        $this->db->where("vd.venta_id",$id);
         return $resultados->result();
 
 

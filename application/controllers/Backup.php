@@ -42,7 +42,7 @@ class Backup extends CI_Controller
     public function restoreBackup()
     {
         $isi_file = file_get_contents(FCPATH.'backup/mybackup.sql');
-$queries = explode(";", rtrim( $isi_file, "\n;" ););
+$queries = explode(";", rtrim( $isi_file, "\n;" ));
 foreach($queries as $query)
 {
     $this->db->query($query);

@@ -37,7 +37,6 @@ class Ventas extends CI_Controller
         $this->load->view('ventas/view.php', $data);
         $this->load->view('templates/footer');
     }
-    public function 
     //metodos
     public function create()
     {
