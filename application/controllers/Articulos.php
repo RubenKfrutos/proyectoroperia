@@ -1,7 +1,7 @@
 <?php
 class Articulos extends CI_Controller
 {
-
+// test
     public function __construct()
     {
         parent::__construct();
