@@ -1,119 +1,81 @@
 <h1 class="h3 mb-4 text-gray-800">Ventas</h1>
 <?php echo validation_errors(); ?>
-<?php echo form_open('ventas/create'); ?>
-<div class="row col-12">
-    <div class="form-group col-6">
-        <label for="fecha_venta">Fecha</label>
-        <input disabled class="form-control" type="date" name="fecha_venta" id="fecha_venta">
-    </div>
-
-    <!-- <div class="form-group col-6">
-            <label for="numero_comprobante">Numero Comprobante</label>
-            <input disabled class="form-control" type="text" name="numero_comprobante">
-        </div> -->
-</div>
-
-<!-- <div class="form-group">
-    <label for="id_cliente">Cliente</label>
-    <select class="form-control" name="id_cliente" id="select_cliente">
-        <?php //foreach ($clientes as $cliente) : 
-        ?>
-            <option value="<?php// echo $cliente['id']; ?>"><?php// echo $cliente['razon_social']; ?></option>
-        <?php //endforeach; 
-        ?>
-    </select>
-</div> -->
-<div class="form-group">
-    <label for="id_cliente">Cliente:</label>
-    <div class="input-group">
-        <input type="hidden" name="id_cliente" id="id_cliente">
-        <input type="text" class="form-control" disabled="disabled" id="cliente">
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
-        </span>
-    </div><!-- /input-group -->
-</div>
-
-<!-- <div class="form-group ">
-        <input type="hidden" name="id_cliente">
-        <label for="id_cliente">Cliente</label>
-        <div class="d-flex">
-
-            <input class="form-control" type="text" name="cliente">
-            <button type="button" class="btn btn-primary">Buscar</button>
+<?php echo form_open('ventas/store'); ?>
+    <div class="row col-12">
+        <div class="form-group col-6">
+            <label for="fecha_venta">Fecha</label>
+            <input disabled class="form-control" type="date" id="fecha_venta">
         </div>
-    </div> -->
-
-<label for="articulos">Articulo</label>
-<div class="form-group d-flex ">
-    <select class="form-control" name="articulos" id="select_articulo">
-        <?php foreach ($articulos as $articulo) : ?>
-            <option value="<?php echo $articulo['id']; ?>"><?php echo $articulo['nombre_articulo'] . ' - ' . $articulo['codigo_barras']; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <button class="btn btn-success" onclick="addProducto()">Agregar</button>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Cantidad</th>
-                <th>Producto</th>
-                <th>Codigo</th>
-                <th>Stock</th>
-                <th>Precio</th>
-                <th>Iva</th>
-                <th>Importe</th>
-                <th>Opciones</th>
-
-
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-
-</div>
-
-<div class="row col-12">
-    <div class="form-group col-3">
-        <label for="iva_5">IVA 5%</label>
-        <input disabled class="form-control" type="text" name="iva_5">
     </div>
 
-    <div class="form-group col-3">
-        <label for="iva_10">IVA 10%</label>
-        <input disabled class="form-control" type="text" name="iva_10">
+    <div class="form-group">
+        <label for="id_cliente">Cliente:</label>
+        <div class="input-group">
+            <input type="hidden" name="id_cliente" id="id_cliente">
+            <input type="text" class="form-control" disabled id="cliente">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
+            </span>
+        </div><!-- /input-group -->
     </div>
 
-
-
-    <div class="form-group col-3">
-        <label for="subtotal">Subtotal</label>
-        <input disabled class="form-control" type="text" name="subtotal">
+    <label for="articulos">Articulo</label>
+    <div class="form-group d-flex ">
+        <select class="form-control" name="articulos" id="select_articulo">
+            <?php foreach ($articulos as $articulo) : ?>
+                <option value="<?php echo $articulo['id']; ?>"><?php echo $articulo['nombre_articulo'] . ' - ' . $articulo['codigo_barras']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="button" class="btn btn-success" onclick="addProducto()">Agregar</button>
     </div>
 
-    <div class="form-group col-3">
-        <label for="descuento">Descuento</label>
-        <input disabled class="form-control" type="text" name="descuento">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Codigo</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Iva</th>
+                    <th>Importe</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody> </tbody>
+        </table>
     </div>
-</div>
 
-<div class="form-group col-6">
+    <div class="row col-12">
+        <div class="form-group col-3">
+            <label for="iva_5">IVA 5%</label>
+            <input readonly class="form-control" type="text" name="iva_5" id="iva_5">
+        </div>
+
+        <div class="form-group col-3">
+            <label for="iva_10">IVA 10%</label>
+            <input readonly class="form-control" type="text" name="iva_10">
+        </div>
+
+        <div class="form-group col-3">
+            <label for="subtotal">Subtotal</label>
+            <input readonly class="form-control" type="text" name="subtotal">
+        </div>
+
+        <div class="form-group col-3">
+            <label for="descuento">Descuento (Monto)</label>
+            <input class="form-control" type="text" name="descuento" id="descuento" onkeypress='validate(event)'>
+        </div>
+    </div>
+
     <label for="total">Total</label>
-    <input disabled class="form-control" type="text" name="total">
-</div>
-
-<input type="submit" name="submit" value="Guardar" class="btn btn-success" />
-
-<a href="<?php echo site_url('ventas/index/'); ?>" class="btn btn-danger">
-
-    <span class="text">Atrás</span>
-</a>
-<!-- </form> -->
-
+    <div class="form-group col-6 d-flex">
+        <input readonly class="form-control" type="text" name="total"> &nbsp
+        <input type="submit" name="submit" value="Guardar" class="btn btn-success" /> &nbsp
+        <a href="<?php echo site_url('ventas/index/'); ?>" class="btn btn-danger">Atrás </a>
+    </div>
+</form>
 
 <script>
     $(document).ready(function() {
@@ -121,92 +83,133 @@
         $('#select_articulo').select2().prop("selectedIndex", "-1").change();
 
         var today = new Date();
-
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
         var yyyy = today.getFullYear();
         if (dd < 10) dd = '0' + dd
-
         if (mm < 10) mm = '0' + mm
-
-        // today = yyyy + '/' + mm + '/' + dd;
         today = yyyy + '-' + mm + '-' + dd;
-
-        console.log(today);
         document.getElementById('fecha_venta').value = today;
     });
 
-    function prueba() {
-        fetch('<?php echo site_url('ventas/prueba/'); ?>')
-            .then(response => response.json())
-            .then(data => console.log(data));
-
-    }
-
-    async function addProducto() {
+    function addProducto() {
         try {
             let id_articulo = document.getElementById('select_articulo').value;
+            if (id_articulo == '') return;
             let articulo;
-
             fetch('<?php echo site_url('ventas/getArticulo/'); ?>' + id_articulo)
                 .then(response => response.json())
                 .then(data => {
                     articulo = data;
-                    console.log(articulo);
-                    let html = "<tr>";
-                    html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-                    html += "<td>" + articulo.nombre_articulo + "</td>";
-                    html += "<td>" + articulo.codigo_interno + "</td>";
-                    html += "<td>" + articulo.stock + "</td>";
-                    html += "<td>" + articulo.precio + "</td>";
-                    html += "<td><input disabled type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-                    html += "<td><input disabled type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-                    html += "<td><button class\"btn btn-success\" onclick=\"removeProducto(this)\">X</button></td>";
-
-                    html += "</tr>";
-
+                    let html = `
+                        <tr>
+                            <td><input type='text' name='cantidades[]' value='1' class='cantidadesVenta' onkeypress='validate(event)'></td>
+                            <td><input type='hidden' name='idarticulos[]' value='${articulo.id}'>${articulo.nombre_articulo}</td>
+                            <td>${articulo.codigo_interno}</td>
+                            <td>${articulo.stock}</td>
+                            <td><input type='hidden' name='precios[]' value='${articulo.precio}'>${articulo.precio}</td>
+                            <td><input readonly type='text'  class='iva' value='${calculateTaxAmount(1, articulo.iva, articulo.precio)}'><input type='hidden' class='taxRate'  value='${articulo.iva}'></td>
+                            <td><input readonly type='text' name='importes[]' class='total' value='${articulo.precio}'=></td>
+                            <td><button class="btn btn-danger" onclick="removeProducto(this)">x</button></td>
+                        </tr>
+                    `;
                     $("#dataTable tbody").append(html);
+                    sumarVenta();
                 });
         } catch (error) {
             console.error(error)
         }
     }
 
+    function calculateTaxAmount(qty, taxRate, price) {
+        let taxAmount, total;
+        total = Number(price) * Number(qty)
+        if (taxRate == 5) taxAmount = Number(total) / Number(21);
+        else if (taxRate == 10) taxAmount = Number(total) / Number(11);
+        else if (taxRate == 0) taxAmount = 0;
+        return taxAmount.toFixed(0);
+    }
+    $(document).on("keyup mouseup", "#descuento", function() {
+        sumarVenta();
+    });
+    $(document).on("keyup mouseup", "#dataTable input.cantidadesVenta", function() {
+        cantidad = $(this).val();
+        stock = Number($(this).closest("tr").find("td:eq(3)").text());
+        precio = Number($(this).closest("tr").find("td:eq(4)").text());
+        taxRate = Number($(this).closest("tr").find("td:eq(5)").find('.taxRate').val());
+
+        if (cantidad != '') {
+            if (cantidad == 0) {
+                alert("El valor ingresada no puede ser menor a la unidad");
+                $(this).val('1');
+                importe = precio;
+            } else if (cantidad > stock) {
+                alert("El valor ingresado no puede sobrepasar el stock");
+                $(this).val(stock);
+                importe = precio * stock;
+            } else {
+                importe = Number(cantidad) * precio;
+            }
+        } else {
+            importe = 0;
+        }
+        let taxAmount = calculateTaxAmount(cantidad, taxRate, precio);
+        $(this).closest("tr").find("td:eq(6)").children("input").val(importe.toFixed(0));
+        $(this).closest("tr").find("td:eq(5)").children("input.iva").val(taxAmount);
+        sumarVenta();
+
+    });
+
+    function sumarVenta() {
+        let subtotal = 0;
+        let iva5 = 0;
+        let iva10 = 0;
+        $("#dataTable tbody tr").each(function() {
+            subtotal = subtotal + Number($(this).children("td:eq(6)").find('input').val());
+            if (Number($(this).children("td:eq(5)").find('input.taxRate').val()) == 5) {
+                iva5 = iva5 + Number($(this).children("td:eq(5)").find('input.iva').val());
+            } else if (Number($(this).children("td:eq(5)").find('input.taxRate').val()) == 10) {
+                iva10 = iva10 + Number($(this).children("td:eq(5)").find('input.iva').val());
+            }
+        });
+
+        $("input[name=subtotal]").val(subtotal.toFixed(0));
+        $("input[name=iva_5]").val(iva5.toFixed(0));
+        $("input[name=iva_10]").val(iva10.toFixed(0));
+
+        let descuento = Number($("#descuento").val());
+        if (descuento == '') descuento = 0;
+        let total = subtotal - descuento;
+        $("input[name=total]").val(total.toFixed(0));
+    }
+
     function removeProducto(elemento) {
         $(elemento).closest('tr').remove();
-        sumar();
-
-
+        sumarVenta()
     }
-    $(document).on('click', '.borrar', function(event) {
-        event.preventDefault();
-        $(this).closest('tr').remove();
-    });
 
     $(document).on("click", ".btn-check", function() {
         cliente = $(this).val();
-        //alert("holaX1");
         infocliente = cliente.split("*");
         $("#id_cliente").val(infocliente[0]);
         $("#cliente").val(infocliente[1]);
         $("#modal-default").modal("hide");
     });
-    $(document).ready(function() {
-        $("form").submit(function(e) {
-            var condicion = $("#rgpd").is(":checked");
-            if (!condicion) {
-                e.preventDefault();
-            } else {
-                $("[name='enviar']").click(function() {
-                    $(this).attr("disabled", "disabled");
-                });
-            };
-        });
-        $("input").blur(function() {
-            $("[name='enviar']").removeAttr("disabled");
-        })
+    function validate(e) {
+        let ev = e || window.event;
+        let key = ev.keyCode || ev.which;
+        key = String.fromCharCode( key );
+        let regex = /[0-9]/;
+        if( !regex.test(key) ) {
+            ev.returnValue = false;
+            if(ev.preventDefault) ev.preventDefault();
+        }
+    }
+    function test(params) {
+        var data = $('form').serializeArray();
+        console.log(data);
+    }
 
-    });
 </script>
 
 <div class="modal fade" id="modal-default">

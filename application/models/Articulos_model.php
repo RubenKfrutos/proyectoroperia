@@ -69,4 +69,23 @@ class Articulos_model extends CI_Model
          $this->db->where("id" , $id);
          $this->db->delete('articulos');
     }
+
+    public function update($id,$data){
+		$this->db->where("id",$id);
+		return $this->db->update("articulos",$data);
+    }
+    
+
+	public function setear_stock_negative($data){
+
+		$this->db->where("stock <", 0);
+		return $this->db->update("articulos", $data);
+    }
+    public function getArticulo($id){
+		$this->db->select("a.*");
+		$this->db->from("articulos a");
+		$this->db->where("a.id",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
+	}
 }

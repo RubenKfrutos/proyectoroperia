@@ -45,17 +45,6 @@ class Ventas extends CI_Controller
         $data['clientes'] = $this->clientes_model->get_cliente();
         $data['articulos'] = $this->articulos_model->get_articulo();
 
-        $data['title'] = 'Crear '; // no se muestra 
-
-        //los parametros que reciben set_rules son 
-        //1 el nombre del campo input que esta en el formulario de la vista
-        //2 un nombre para el campo para mostrar en un mensaje de error para mostrar al usuario
-        //3 la regla ejemplo en este caso se usa required pero puede ser unico , email etccc
-
-
-
-
-
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('ventas/create', $data);
@@ -67,8 +56,6 @@ class Ventas extends CI_Controller
         }
     }
 
-    //la priemra manera de llegar a este metodo es desde el index boton editar que tiene la url /clientes/edit/id_cliente
-    //la segunda manera de llegar a este metodo es con el boton guardar de la vista clientes/edit
 
     //metodos
     public function edit($id_venta = NULL)
@@ -128,5 +115,81 @@ class Ventas extends CI_Controller
         $articulo = $this->articulos_model->get_articulo($id);
         echo json_encode($articulo);
     }
+
+    public function store(){
+		//la fecha se guarda en base de datos, current timestamp
+		$subtotal = $this->input->post("subtotal");
+		$iva5 = $this->input->post("iva_5");
+		$iva10 = $this->input->post("iva_10");
+		$descuento = $this->input->post("descuento");
+		$total = $this->input->post("total");
+		$idcliente = $this->input->post("id_cliente");
+		$idusuario = $_SESSION["id"];
+
+		$data = array(
+			'subtotal' => $subtotal,
+			'iva_5' => $iva5,
+			'iva_10' => $iva10,
+			'descuento' => $descuento,
+			'total' => $total,
+			'id_cliente' => $idcliente,
+			'id_usuario' => $idusuario,
+        );
+
+		$idarticulos = $this->input->post("idarticulos");
+		$precios = $this->input->post("precios");
+		$cantidades = $this->input->post("cantidades");
+        $importes = $this->input->post("importes");
+
+        if ($this->ventas_model->save($data)) {
+            $idventa = $this->ventas_model->lastID();
+			$this->save_detalle($idarticulos,$idventa,$precios,$cantidades,$importes);
+			redirect('/ventas/index/');
+		}else{
+            //redirect(base_url()."movimientos/ventas/add");
+			echo "0";
+		}
+    }
+
+    protected function save_detalle($articulos,$idventa,$precios,$cantidades,$importes){
+        for ($i=0; $i < count($articulos); $i++) { 
+			$data  = array(
+				'id_articulo' => $articulos[$i], 
+				'id_venta' => $idventa,
+				'precio_unitario' => $precios[$i],
+				'cantidad' => $cantidades[$i],
+				'monto_importe'=> $importes[$i],
+			);
+			$this->ventas_model->save_detalle($data);
+			$this->updateStockProducto($articulos[$i],$cantidades[$i]);
+		}
+		$this->reset_stock_negative();
+    }
     
+    protected function updateStockProducto($idarticulo,$cantidad){
+        $infoproducto = $this->articulos_model->getArticulo($idarticulo);
+        
+		$data = array(
+			'stock' => $infoproducto->stock - $cantidad, 
+		);
+		$this->articulos_model->update($idarticulo, $data);
+    }
+    
+    protected function reset_stock_negative(){
+		$data = array(
+			"stock" => 0
+		);
+		$this->articulos_model->setear_stock_negative($data);
+    }
+
+    public function getVenta($idVenta = NULL){
+        
+        $venta = $this->ventas_model->getVenta($idVenta);
+        echo json_encode($venta);
+    }
+
+    public function getVentaDetalle($idVenta = NULL){
+        $ventaDetalle = $this->ventas_model->getVentaDetalle($idVenta);
+        echo json_encode($ventaDetalle);
+    }
 }
