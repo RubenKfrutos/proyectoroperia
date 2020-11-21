@@ -12,7 +12,7 @@ class Pagos_model extends CI_Model
         if ($id_pagos === FALSE) {
             // $query = $this->db->get('pago');
             // return $query->result_array();
-            $this->db->select("p.*, c.razon_social");
+            $this->db->select("p.*, c.razon_social, cc.id_venta");
             $this->db->from("pago p");
             $this->db->join("control_credito cc", " cc.id = p.id_control_credito", "left");
             $this->db->join("clientes c", " c.id = cc.id_cliente", "left");
@@ -24,6 +24,7 @@ class Pagos_model extends CI_Model
         $query = $this->db->get_where('pago', array('id' => $id_pagos));
         return $query->row_array();
     }
+
 
     public function set_cliente()
     {

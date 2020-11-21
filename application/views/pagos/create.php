@@ -3,6 +3,15 @@
 <?php echo validation_errors(); ?>
 <?php echo form_open('pagos/create'); ?>
 <div class="form-group">
+    <label for="id_cliente">Cliente</label>
+    <select class="form-control" name="id_cliente" id="select_cliente">
+        <?php foreach ($clientes as $cliente) : ?>
+            <option value="<?php echo $cliente['id']; ?>"><?php echo $cliente['razon_social']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+<div class="form-group">
     <label for="id_control_credito">Credito</label>
     <select class="form-control" name="id_control_credito" id="select_control_credito">
         <?php foreach ($control_creditos as $control_credito) : ?>
@@ -11,42 +20,19 @@
     </select>
 </div>
 
-<div class="row col-12">
-    <div class="form-group col-6">
-        <label for="tipo_documento">Tipo de Documento</label>
-        <select class="form-control" name="tipo_documento">
-            <option value="CI">CI</option>
-            <option value="RUC">RUC</option>
-
-        </select>
-    </div>
-
-    <div class="form-group col-6">
-        <label for="numero_documento">Numero de Documento</label>
-        <input class="form-control" type="text" name="numero_documento">
-
-    </div>
-
-
-</div>
-
 <div class="form-group">
-    <label for="numero_contacto">Numero de Contacto</label>
-    <input class="form-control" type="text" name="numero_contacto">
-
+    <label for="monto">Pago</label>
+    <input class="form-control" type="" name="monto">
 </div>
 
-<div class="form-group">
-    <label for="email_contacto">Email de Contacto</label>
-    <input class="form-control" type="email" name="email_contacto">
 
-</div>
 
-<div class="form-group">
-    <label for="direccion">Direccion</label>
-    <input class="form-control" type="text" name="direccion">
 
-</div>
+
+
+
+
+
 
 <input type="submit" name="submit" value="Guardar" class="btn btn-success" />
 

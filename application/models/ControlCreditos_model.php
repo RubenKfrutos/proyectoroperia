@@ -12,9 +12,11 @@ class ControlCreditos_model extends CI_Model
         if ($id_controlCreditos=== FALSE) {
            // $query = $this->db->get('control_credito');
            // return $query->result_array();
-            $this->db->select("cc.*, c.razon_social");
+            $this->db->select("cc.*, c.razon_social, v.id as id_venta");
             $this->db->from("control_credito cc");
             $this->db->join("clientes c", " c.id = cc.id_cliente", "left");
+            $this->db->join("ventas v", " c.id = v.id_cliente", "left");
+            
 
             $resultados = $this->db->get();
             return $resultados->result_array();

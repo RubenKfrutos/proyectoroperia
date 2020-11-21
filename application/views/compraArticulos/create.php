@@ -28,7 +28,7 @@
 <div class="form-group d-flex ">
     <select class="form-control" name="articulos" id="select_articulo">
         <?php foreach ($articulos as $articulo) : ?>
-            <option value="<?php echo $articulo['id']; ?>"><?php echo $articulo['nombre_articulo']. ' - ' . $articulo['codigo_barras']; ?></option>
+            <option value="<?php echo $articulo['id']; ?>"><?php echo $articulo['nombre_articulo'] . ' - ' . $articulo['codigo_barras']; ?></option>
         <?php endforeach; ?>
     </select>
     <button class="btn btn-success" onclick="addProducto()">Agregar</button>
@@ -54,7 +54,9 @@
         </tbody>
     </table>
 
+
 </div>
+
 
 <input type="submit" name="submit" value="Guardar" class="btn btn-success" />
 
@@ -105,9 +107,10 @@
             console.error(error)
         }
     }
+
     function removeProducto(elemento) {
         $(elemento).closest('tr').remove();
-        
+
     }
     $(document).on('click', '.borrar', function(event) {
         event.preventDefault();

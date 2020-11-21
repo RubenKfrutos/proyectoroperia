@@ -20,7 +20,6 @@
                                                 <th>Venta</th>
                                                 <th>Monto total</th>
                                                 <th>Saldo</th>
-                                                <th>Opciones</th>
                                         </tr>  
                                 </thead>
 
@@ -31,18 +30,7 @@
                                                         <td><?php echo $controlCredito_item['id_venta']; ?></td>
                                                         <td><?php echo $controlCredito_item['monto_total']; ?></td>
                                                         <td><?php echo $controlCredito_item['saldo']; ?></td>
-                                                        <td>
-                                                                <a href="<?php echo site_url('controlCreditos/view/' . $controlCredito_item['id']); ?>" class="btn btn-success btn-circle">
-                                                                        <i class="far fa-eye"></i>        
-                                                                </a>
-                                                                <a href="<?php echo site_url('controlCreditos/delete/' . $controlCredito_item['id']); ?>" class="btn btn-danger btn-circle">
-                                                                        <i class="fas fa-trash"></i>
-
-                                                                </a>
-                                                                <a href="<?php echo site_url('controlCreditos/edit/' . $controlCredito_item['id']); ?>" class="btn btn-primary btn-circle">
-                                                                        <i class="fas fa-edit"></i>
-                                                                </a>
-                                                        </td>
+                                                        
                                                 </tr>
 
                                         <?php endforeach; ?>

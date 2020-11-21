@@ -12,7 +12,7 @@ class CompraArticulos_model extends CI_Model
         if ($id_compraArticulos === FALSE) {
             // $query = $this->db->get('compra_articulo');
             // return $query->result_array();
-             $this->db->select("ca.*, p.razon_social");
+            $this->db->select("ca.*, p.razon_social");
             $this->db->from("compra_articulo ca");
             $this->db->join("proveedores p", " p.id = ca.id_proveedor", "left");
 

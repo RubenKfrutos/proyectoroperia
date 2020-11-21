@@ -10,6 +10,12 @@ class DevolucionesVentas_model extends CI_Model
     public function get_devolucionesVentas($id_devolucionesVentas = FALSE)
     {
         if ($id_devolucionesVentas === FALSE) {
+            $this->db->select("dv.*, c.razon_social,a.nombre_articulo");
+            $this->db->from("devolucion_venta dv");
+            $this->db->join("clientes c", " c.id = dv.id_cliente", "left");
+            $this->db->join("articulos a", " a.id = dv.id_producto", "left");
+
+
             $query = $this->db->get('devolucion_venta');
             return $query->result_array();
         }

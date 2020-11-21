@@ -11,6 +11,15 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label for="id_venta">Venta</label>
+    <select class="form-control" name="id_venta" id="select_venta">
+        <?php foreach ($ventas as $venta) : ?>
+            <option value="<?php echo $venta['id']; ?>"><?php echo $venta['id_venta']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
 
 
 <div class="form-group">
@@ -21,7 +30,7 @@
 
 <div class="form-group">
     <label for="entrega">Entrega</label>
-    <input class="form-control" type="email" name="entrega">
+    <input class="form-control" type="" name="entrega">
 
 </div>
 

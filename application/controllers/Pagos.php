@@ -6,6 +6,8 @@ class Pagos extends CI_Controller
         {
                 parent::__construct();
                 $this->load->model('pagos_model');
+                $this->load->model("clientes_model");
+
                 $this->load->helper('url_helper');
                 $this->load->model('controlCreditos_model');
 
@@ -44,6 +46,8 @@ class Pagos extends CI_Controller
                 $this->load->helper('form');
                 $this->load->library('form_validation');
                 $data['control_creditos'] = $this->controlCreditos_model->get_controlCreditos();
+                $data['clientes'] = $this->clientes_model->get_cliente();
+
 
 
                 $data['title'] = 'Crear un cliente';

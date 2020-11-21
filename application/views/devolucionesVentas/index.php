@@ -19,28 +19,16 @@
                                                 <th>Producto</th>
                                                 <th>Cliente</th>
                                                 <th>Fecha</th>
-                                                <th>Opciones</th>
                                         </tr>  
                                 </thead>
 
                                 <tbody>
                                         <?php foreach ($devolucionesVentas as $devolucionesVenta_item) : ?>
                                                 <tr>
-                                                        <td><?php echo $devolucionesVenta_item['id_producto']; ?></td>
-                                                        <td><?php echo $devolucionesVenta_item['id_cliente']; ?></td>
+                                                        <td><?php echo $devolucionesVenta_item['nombre_articulo']; ?></td>
+                                                        <td><?php echo $devolucionesVenta_item['razon_social']; ?></td>
                                                         <td><?php echo $devolucionesVenta_item['fecha']; ?></td>
-                                                        <td>
-                                                                <a href="<?php echo site_url('devolucionesVentas/view/' . $devolucionesVenta_item['id']); ?>" class="btn btn-success btn-circle">
-                                                                        <i class="far fa-eye"></i>        
-                                                                </a>
-                                                                <a href="<?php echo site_url('devolucionesVentas/delete/' . $devolucionesVenta_item['id']); ?>" class="btn btn-danger btn-circle">
-                                                                        <i class="fas fa-trash"></i>
-
-                                                                </a>
-                                                                <a href="<?php echo site_url('devolucionesVentas/edit/' . $devolucionesVenta_item['id']); ?>" class="btn btn-primary btn-circle">
-                                                                        <i class="fas fa-edit"></i>
-                                                                </a>
-                                                        </td>
+                                                        
                                                 </tr>
 
                                         <?php endforeach; ?>

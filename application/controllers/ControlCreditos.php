@@ -7,6 +7,8 @@ class ControlCreditos extends CI_Controller
                 parent::__construct();
                 $this->load->model('controlCreditos_model');
                 $this->load->model("clientes_model");
+                $this->load->model("ventas_model");
+
 
                 $this->load->helper('url_helper');
                 if (!$this->session->userdata("is_logged")) {
