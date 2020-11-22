@@ -192,4 +192,9 @@ class Ventas extends CI_Controller
         $ventaDetalle = $this->ventas_model->getVentaDetalle($idVenta);
         echo json_encode($ventaDetalle);
     }
+
+    public function getVentas($iclienteID = NULL){
+        $ventas = $this->ventas_model->getVentas($iclienteID);
+        echo json_encode($ventas);
+    }
 }

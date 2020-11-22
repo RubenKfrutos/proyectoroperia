@@ -118,4 +118,11 @@ class Ventas_model extends CI_Model
         $this->db->where("vd.id_venta = ", $id_venta);
         return $this->db->get()->result();
     }
+    
+    public function getVentas($clienteId = FALSE){
+        $this->db->select("v.*");
+        $this->db->from("ventas v");
+        $this->db->where("v.id_cliente = ", $clienteId);
+        return $this->db->get()->result();
+    }
 }

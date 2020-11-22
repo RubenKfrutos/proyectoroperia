@@ -85,7 +85,6 @@
             <a class="collapse-item" href="<?php echo site_url('devolucionesVentas/index/'); ?>">Devoluciones</a>
             <a class="collapse-item" href="<?php echo site_url('compraArticulos/index/'); ?>">Compra de Articulos</a>
             <a class="collapse-item" href="<?php echo site_url('backup/index/'); ?>">Backup</a>
-
           </div>
         </div>
       </li>
@@ -107,7 +106,7 @@
      
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <!-- <hr class="sidebar-divider"> -->
 
       <!-- Heading -->
       <!-- <div class="sidebar-heading">
@@ -115,7 +114,7 @@
       </div> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -163,12 +162,6 @@
                 </form>
               </div>
             </li>
-
-        
-            
-
-       
-            
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

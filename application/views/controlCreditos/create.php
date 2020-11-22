@@ -48,3 +48,26 @@
 </a>
 
 </form>
+
+<script>
+    $(document).ready(function() {
+        $('#select_cliente').select2().prop("selectedIndex","-1").change();
+        $('#select_venta').select2().prop("selectedIndex","-1").change();
+        let selectCliente = document.getElementById('select_cliente');
+        selectCliente.setAttribute("onchange", "loadSubjectSales()");
+    });
+    function loadSubjectSales() {
+        let clienteId = document.getElementById('select_cliente').value;
+        let ventas;
+            fetch('<?php echo site_url('ventas/getVentas/'); ?>' + clienteId)
+                .then(response => response.json())
+                .then(data => {
+                    ventas = data;
+                    let select = document.getElementById('select_venta');
+                    select.options.length = 0;
+                    for(index in ventas) {
+                        select.options[select.options.length] = new Option(`${ventas[index].id} - ${ventas[index].fecha_venta} - ${ventas[index].total}`, ventas[index].id);
+                    }
+                });
+    }
+</script>
